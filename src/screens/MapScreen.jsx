@@ -158,29 +158,32 @@ export default function MapScreen({ onChat, onOpenUser }) {
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'transparent' }}>
 
-      {/* Header */}
-      <div style={{ padding: '48px 20px 14px', flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
-        <h1 style={{ color: '#1C1712', fontSize: 30, fontWeight: 900, margin: 0, display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 14, padding: '4px 16px' }}><span style={{ opacity: 0.65 }}>🗺️ </span>Mapa</h1>
-        <p style={{ color: '#1C1712', fontSize: 20, fontWeight: 600, margin: 0, display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 12, padding: '3px 14px' }}>Personas cerca ahora</p>
-      </div>
+      {/* Todo en un único scroll */}
+      <div style={{ flex: 1, overflowY: 'auto', padding: '0 0 100px' }} className="screen-content">
 
-      {/* Mapa grande full-width */}
-      <div style={{ margin: '0 12px', borderRadius: 22, overflow: 'hidden', flexShrink: 0, height: 320, boxShadow: '0 4px 20px rgba(0,0,0,0.18)' }}>
-        <CityMap onSelect={onOpenUser} />
-      </div>
+        {/* Header */}
+        <div style={{ padding: '48px 20px 14px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
+          <h1 style={{ color: '#1C1712', fontSize: 30, fontWeight: 900, margin: 0, display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 14, padding: '4px 16px' }}><span style={{ opacity: 0.65 }}>🗺️ </span>Mapa</h1>
+          <p style={{ color: '#1C1712', fontSize: 20, fontWeight: 600, margin: 0, display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 12, padding: '3px 14px' }}>Personas cerca ahora</p>
+        </div>
 
-      {/* Leyenda */}
-      <div style={{ display: 'flex', gap: 20, padding: '10px 20px 0', flexShrink: 0, alignSelf: 'flex-start', marginLeft: 16, background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 12, padding: '6px 14px' }}>
-        {[{ color: '#F08050', label: 'Acompañantes' }, { color: '#1C1712', label: 'Tú' }].map(({ color, label }) => (
-          <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
-            <div style={{ width: 12, height: 12, borderRadius: '50%', background: color }} />
-            <span style={{ color: '#1C1712', fontSize: 18, fontWeight: 600, textShadow: '0 1px 6px rgba(255,255,255,0.95)' }}>{label}</span>
-          </div>
-        ))}
-      </div>
+        {/* Mapa */}
+        <div style={{ margin: '0 12px', borderRadius: 22, overflow: 'hidden', height: 300, boxShadow: '0 4px 20px rgba(0,0,0,0.18)' }}>
+          <CityMap onSelect={onOpenUser} />
+        </div>
 
-      {/* Lista usuarios */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '14px 16px 100px' }} className="screen-content">
+        {/* Leyenda */}
+        <div style={{ display: 'flex', gap: 20, margin: '10px 0 0 16px', alignSelf: 'flex-start', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 12, padding: '6px 14px' }}>
+          {[{ color: '#F08050', label: 'Acompañantes' }, { color: '#1C1712', label: 'Tú' }].map(({ color, label }) => (
+            <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+              <div style={{ width: 12, height: 12, borderRadius: '50%', background: color }} />
+              <span style={{ color: '#1C1712', fontSize: 18, fontWeight: 600 }}>{label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Lista usuarios */}
+        <div style={{ padding: '14px 16px 0' }}>
         <h2 style={{ color: '#1C1712', fontSize: 26, fontWeight: 900, margin: '0 0 12px', display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 14, padding: '4px 14px' }}><span style={{ opacity: 0.65 }}>📍 </span>En tu zona</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {nearby.map(user => (
@@ -199,6 +202,7 @@ export default function MapScreen({ onChat, onOpenUser }) {
               </button>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </div>
