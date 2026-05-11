@@ -42,7 +42,7 @@ function CrearRutaModal({ onClose, onCrear }) {
         </div>
 
         {/* Contenido con scroll */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px' }}>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px 16px' }}>
           {/* Lugar */}
           <p style={{ color: '#6B4C3B', fontSize: 13, fontWeight: 700, margin: '0 0 10px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
             <MapPin size={13} style={{ marginRight: 5, verticalAlign: 'middle' }} />Lugar del paseo
@@ -63,7 +63,7 @@ function CrearRutaModal({ onClose, onCrear }) {
           <p style={{ color: '#6B4C3B', fontSize: 13, fontWeight: 700, margin: '0 0 10px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
             <Clock size={13} style={{ marginRight: 5, verticalAlign: 'middle' }} />Hora de salida
           </p>
-          <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4, marginBottom: 24 }}>
+          <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
             {HORAS.map(h => (
               <button key={h} onClick={() => setHora(h)} style={{
                 flexShrink: 0,
@@ -75,19 +75,19 @@ function CrearRutaModal({ onClose, onCrear }) {
               }}>{h}</button>
             ))}
           </div>
+        </div>
 
-          {/* Botón sticky dentro del scroll */}
-          <div style={{ position: 'sticky', bottom: 0, background: 'white', paddingBottom: 16, paddingTop: 8 }}>
-            <button onClick={publicar} style={{
-              width: '100%', background: lugar && hora ? '#F08050' : '#DDD0C4',
-              color: 'white', border: 'none', borderRadius: 18,
-              padding: '18px 0', fontSize: 19, fontWeight: 900,
-              cursor: lugar && hora ? 'pointer' : 'default', fontFamily: 'inherit',
-              boxShadow: lugar && hora ? '0 4px 16px rgba(240,128,80,0.35)' : 'none',
-            }}>
-              CREAR RUTA
-            </button>
-          </div>
+        {/* Botón fuera del scroll, siempre visible */}
+        <div style={{ flexShrink: 0, padding: '12px 20px', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 90px)', background: 'white', borderTop: '1.5px solid #EAD8CC' }}>
+          <button onClick={publicar} style={{
+            width: '100%', background: lugar && hora ? '#F08050' : '#DDD0C4',
+            color: 'white', border: 'none', borderRadius: 18,
+            padding: '18px 0', fontSize: 19, fontWeight: 900,
+            cursor: lugar && hora ? 'pointer' : 'default', fontFamily: 'inherit',
+            boxShadow: lugar && hora ? '0 4px 16px rgba(240,128,80,0.35)' : 'none',
+          }}>
+            CREAR RUTA
+          </button>
         </div>
       </div>
     </div>
