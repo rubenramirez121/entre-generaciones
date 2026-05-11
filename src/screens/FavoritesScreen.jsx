@@ -58,12 +58,9 @@ export default function FavoritesScreen({ onChat, onOpenUser }) {
 
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'transparent' }}>
-      <div style={{ padding: '48px 20px 20px', flexShrink: 0 }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '48px 20px 100px' }} className="screen-content">
         <h1 style={{ color: '#1C1712', fontSize: 30, fontWeight: 900, margin: '0 0 4px', display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 14, padding: '4px 16px' }}><span style={{ opacity: 0.65 }}>⭐ </span>Mis Contactos</h1>
-        <p style={{ color: '#1C1712', fontSize: 20, fontWeight: 600, margin: 0, display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 12, padding: '3px 14px' }}>{favorites.length} personas</p>
-      </div>
-
-      <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px 100px' }} className="screen-content">
+        <p style={{ color: '#1C1712', fontSize: 20, fontWeight: 600, margin: '0 0 20px', display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 12, padding: '3px 14px' }}>{favorites.length} personas</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {favorites.map(user => (
             <ContactCard

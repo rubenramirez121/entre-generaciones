@@ -7,35 +7,31 @@ function ConversationList({ onOpen }) {
 
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'transparent' }}>
-      <div style={{ padding: '48px 20px 20px', flexShrink: 0 }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '48px 20px 100px' }} className="screen-content">
         <h1 style={{ color: '#1C1712', fontSize: 30, fontWeight: 900, margin: '0 0 4px', display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 14, padding: '4px 16px' }}><span style={{ opacity: 0.65 }}>💬 </span>Mensajes</h1>
-        <p style={{ color: '#1C1712', fontSize: 20, fontWeight: 600, margin: 0, display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 12, padding: '3px 14px' }}>Coordina tus paseos</p>
-      </div>
+        <p style={{ color: '#1C1712', fontSize: 20, fontWeight: 600, margin: '0 0 16px', display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 12, padding: '3px 14px' }}>Coordina tus paseos</p>
 
-      {/* Activos */}
-      <div style={{ padding: '0 20px 16px', flexShrink: 0 }}>
-        <div style={{ background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 20, padding: '14px 16px' }}>
-        <p style={{ color: '#1C1712', fontSize: 16, fontWeight: 800, margin: '0 0 12px' }}><span style={{ opacity: 0.65 }}>🟢 </span>Activos ahora</p>
-        <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 4 }}>
-          {USERS.filter(u => u.online).map(u => (
-            <button key={u.id} onClick={() => onOpen(u)}
-              style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, border: 'none', background: 'none', cursor: 'pointer', padding: 0 }}>
-              <div style={{ position: 'relative' }}>
-                <img src={u.photo} alt={u.name}
-                  style={{ width: 60, height: 60, borderRadius: 16, objectFit: 'cover', border: '2.5px solid #F08050' }} />
-                <span className="pulse-dot" style={{
-                  position: 'absolute', bottom: -1, right: -1,
-                  width: 13, height: 13, borderRadius: '50%', background: '#4ade80', border: '2px solid white',
-                }} />
-              </div>
-              <span style={{ color: '#1C1712', fontSize: 14, fontWeight: 700, textShadow: '0 1px 6px rgba(255,255,255,0.95)' }}>{u.name}</span>
-            </button>
-          ))}
+        {/* Activos */}
+        <div style={{ background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 20, padding: '14px 16px', marginBottom: 20 }}>
+          <p style={{ color: '#1C1712', fontSize: 16, fontWeight: 800, margin: '0 0 12px' }}><span style={{ opacity: 0.65 }}>🟢 </span>Activos ahora</p>
+          <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 4 }}>
+            {USERS.filter(u => u.online).map(u => (
+              <button key={u.id} onClick={() => onOpen(u)}
+                style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, border: 'none', background: 'none', cursor: 'pointer', padding: 0 }}>
+                <div style={{ position: 'relative' }}>
+                  <img src={u.photo} alt={u.name}
+                    style={{ width: 60, height: 60, borderRadius: 16, objectFit: 'cover', border: '2.5px solid #F08050' }} />
+                  <span className="pulse-dot" style={{
+                    position: 'absolute', bottom: -1, right: -1,
+                    width: 13, height: 13, borderRadius: '50%', background: '#4ade80', border: '2px solid white',
+                  }} />
+                </div>
+                <span style={{ color: '#1C1712', fontSize: 14, fontWeight: 700 }}>{u.name}</span>
+              </button>
+            ))}
+          </div>
         </div>
-        </div>
-      </div>
 
-      <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px 100px' }} className="screen-content">
         <p style={{ color: '#1C1712', fontSize: 16, fontWeight: 800, margin: '0 0 12px', display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 12, padding: '3px 12px' }}>Conversaciones</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {chatUsers.map(user => {
