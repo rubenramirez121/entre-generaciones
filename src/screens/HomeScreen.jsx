@@ -214,36 +214,36 @@ export default function HomeScreen({ onOpenUser, onMap }) {
         </button>
 
         {/* Mis rutas */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-          <h2 style={{ color: '#1C1712', fontSize: 26, fontWeight: 900, margin: 0, background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 14, padding: '4px 14px' }}><span style={{ opacity: 0.65 }}>📍 </span>Mis rutas</h2>
+        <div style={{ marginBottom: 14 }}>
+          <h2 style={{ color: '#1C1712', fontSize: 26, fontWeight: 900, margin: '0 0 10px', display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 14, padding: '4px 14px' }}><span style={{ opacity: 0.65 }}>📍 </span>Mis rutas</h2>
           <div style={{ display: 'flex', gap: 8 }}>
             {!deleteMode ? <>
               <button onClick={() => setCrearOpen(true)} style={{
                 background: '#F08050', border: 'none', borderRadius: 12,
-                padding: '8px 14px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5,
+                padding: '10px 18px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6,
                 boxShadow: '0 3px 10px rgba(240,128,80,0.35)',
               }}>
                 <Plus size={16} color="white" />
-                <span style={{ color: 'white', fontSize: 14, fontWeight: 800, fontFamily: 'inherit' }}>Nueva</span>
+                <span style={{ color: 'white', fontSize: 15, fontWeight: 800, fontFamily: 'inherit' }}>Nueva ruta</span>
               </button>
               {misRutas.length > 0 &&
                 <button onClick={() => { setDeleteMode(true); setSelected([]) }} style={{
                   background: 'white', border: '1.5px solid #EAD8CC', borderRadius: 12,
-                  padding: '8px 14px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5,
+                  padding: '10px 18px', cursor: 'pointer',
                 }}>
-                  <span style={{ color: '#6B4C3B', fontSize: 14, fontWeight: 800, fontFamily: 'inherit' }}>Eliminar</span>
+                  <span style={{ color: '#6B4C3B', fontSize: 15, fontWeight: 800, fontFamily: 'inherit' }}>Eliminar</span>
                 </button>
               }
             </> : <>
               <button onClick={() => { setDeleteMode(false); setSelected([]) }} style={{
                 background: 'white', border: '1.5px solid #EAD8CC', borderRadius: 12,
-                padding: '8px 14px', cursor: 'pointer', fontFamily: 'inherit',
-                color: '#6B4C3B', fontSize: 14, fontWeight: 800,
+                padding: '10px 18px', cursor: 'pointer', fontFamily: 'inherit',
+                color: '#6B4C3B', fontSize: 15, fontWeight: 800,
               }}>Cancelar</button>
               <button onClick={eliminarSeleccionadas} disabled={selected.length === 0} style={{
                 background: selected.length > 0 ? '#dc2626' : '#EAD8CC', border: 'none', borderRadius: 12,
-                padding: '8px 14px', cursor: selected.length > 0 ? 'pointer' : 'default', fontFamily: 'inherit',
-                color: 'white', fontSize: 14, fontWeight: 800,
+                padding: '10px 18px', cursor: selected.length > 0 ? 'pointer' : 'default', fontFamily: 'inherit',
+                color: 'white', fontSize: 15, fontWeight: 800,
               }}>Borrar {selected.length > 0 ? `(${selected.length})` : ''}</button>
             </>}
           </div>
