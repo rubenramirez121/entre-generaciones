@@ -51,6 +51,13 @@ export const ROUTES = [
   },
 ]
 
+export const COMPLETED = [
+  { id: 1, routeName: 'Parque de la Cañada',  date: '15 mayo',   partnerId: 1, photo: '/completed/walk1.jpg', fallback: '/routes/route1.jpg' },
+  { id: 2, routeName: 'Paseo de la Chopera',  date: '10 mayo',   partnerId: 2, photo: '/completed/walk2.jpg', fallback: '/routes/route2.jpg' },
+  { id: 3, routeName: 'Jardines de la Villa', date: '3 mayo',    partnerId: 4, photo: '/completed/walk3.jpg', fallback: '/routes/route4.jpg' },
+  { id: 4, routeName: 'Ruta del Río Jarama',  date: '28 abril',  partnerId: 3, photo: '/completed/walk4.jpg', fallback: '/routes/route3.jpg' },
+]
+
 export const MESSAGES = {
   2: [
     { id: 1, from: 'them', text: '¡Hola María José! ¿Te apuntas mañana al paseo por la Chopera?', time: '09:14' },

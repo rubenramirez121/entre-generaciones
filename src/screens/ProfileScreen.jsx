@@ -1,5 +1,5 @@
 import { ChevronLeft, Shield, MapPin, Clock, MessageCircle, Phone, Camera, Edit3, Check } from 'lucide-react'
-import { ME, ROUTES } from '../data'
+import { ME, USERS, COMPLETED } from '../data'
 
 function OtherProfile({ user, onBack, onChat }) {
   return (
@@ -135,19 +135,41 @@ function MyProfile() {
         </div>
 
         {/* Rutas completadas */}
-        <h3 style={{ color: '#1C1712', fontSize: 26, fontWeight: 900, margin: '0 0 14px', display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 14, padding: '4px 14px' }}>✅ Rutas completadas</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          {ROUTES.slice(0, 3).map(route => (
-            <div key={route.id} style={{ background: 'white', borderRadius: 20, border: '1.5px solid #EAD8CC', padding: '16px 18px', display: 'flex', alignItems: 'center', gap: 14, boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
-              <div style={{ background: '#dcfce7', borderRadius: 14, padding: 10, flexShrink: 0, display: 'flex' }}>
-                <Check size={20} color="#16a34a" strokeWidth={3} />
+        <h3 style={{ color: '#1C1712', fontSize: 26, fontWeight: 900, margin: '0 0 14px', display: 'inline-block', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', borderRadius: 14, padding: '4px 14px' }}>📸 Recuerdos</h3>
+        <div style={{ display: 'flex', gap: 12, overflowX: 'auto', paddingBottom: 8, marginLeft: -20, paddingLeft: 20, marginRight: -20, paddingRight: 20 }}>
+          {COMPLETED.map(item => {
+            const partner = USERS.find(u => u.id === item.partnerId)
+            return (
+              <div key={item.id} style={{ position: 'relative', flexShrink: 0, width: 158, height: 220, borderRadius: 22, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.18)' }}>
+                <img
+                  src={item.photo}
+                  onError={e => { e.target.onerror = null; e.target.src = item.fallback }}
+                  alt={item.routeName}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                />
+                {/* Gradiente inferior */}
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 45%, rgba(0,0,0,0.75) 100%)' }} />
+                {/* Info */}
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px 12px 14px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: -6, marginBottom: 8 }}>
+                    <img src={ME.photo} alt={ME.name}
+                      style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover', border: '2px solid white', zIndex: 2 }} />
+                    {partner && (
+                      <img src={partner.photo} alt={partner.name}
+                        style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover', border: '2px solid white', marginLeft: -10, zIndex: 1 }} />
+                    )}
+                  </div>
+                  <p style={{ color: 'white', fontSize: 13, fontWeight: 800, margin: '0 0 2px', lineHeight: 1.2 }}>{item.routeName}</p>
+                  <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, fontWeight: 600, margin: 0 }}>{item.date} · con {partner?.name}</p>
+                </div>
+                {/* Badge completada */}
+                <div style={{ position: 'absolute', top: 10, right: 10, background: 'rgba(22,163,74,0.9)', backdropFilter: 'blur(4px)', borderRadius: 20, padding: '4px 9px', display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <Check size={11} color="white" strokeWidth={3} />
+                  <span style={{ color: 'white', fontSize: 11, fontWeight: 800 }}>Hecha</span>
+                </div>
               </div>
-              <div>
-                <p style={{ color: '#1C1712', fontSize: 17, fontWeight: 800, margin: '0 0 3px' }}>{route.name}</p>
-                <p style={{ color: '#6B4C3B', fontSize: 14, fontWeight: 600, margin: 0 }}>{route.distance} · {route.duration}</p>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </div>
